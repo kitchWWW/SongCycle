@@ -1,4 +1,4 @@
-[1,//a #major third
+[1,//a
 2,//b
 3,//c
 4,//d
@@ -52,9 +52,9 @@ BeeThree organ => JCRev r => Echo e => dac;
 //.3 => e2.mix;
 .9 => organ.gain;
 
-[16,16,20,20,20,5,16] @=>int keys[];
+[19] @=>int keys[];
 0 => int keyIndex;
-16 => int key; //E or something cool like that I think
+19 => int key; //E or something cool like that I think
 
 .6=> float eT;
 //.3=> float e2T;
@@ -85,8 +85,8 @@ while( true )
                 Std.mtof(key) => freq;
             }else if(msg.which==40){
                 //Enter key I think?
-                keyIndex++;
-                keys[keyIndex%5]=>key;
+               // keyIndex++;
+               // keys[keyIndex%5]=>key;
             }else if(msg.which == 229){
                 //shift
                 1 => eT;

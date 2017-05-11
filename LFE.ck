@@ -1,28 +1,28 @@
-[4,//a #major third
-0,//b
+[7,//a #major third
+2,//b
 2,//c
 11,//d
-12,//e #1
-14,//f
-14,//g
-28,//h
-0,//i
-7,//j
+5,//e #1
+12,//f
+11,//g
+0,//h
+9,//i
+0,//j
 0,//k
-23,//l
-0,//m
-19,//n
-16,//o #4
-0,//p
-0,//q
-31,//r
-36,//s
-24,//t  #2
-2,//u
-0,//v
-0,//w
-0,//x
-0,//y
+3,//l
+4,//m
+0,//n
+7,//o
+-1,//p
+-1,//q
+5,//r
+6,//s
+4,//t  #2
+4,//u
+-13,//v
+9,//w
+-1,//x
+11,//y
 0//z
 ] @=> int alpha[];
 
@@ -52,9 +52,9 @@ BeeThree organ => JCRev r => Echo e => dac;
 //.3 => e2.mix;
 .9 => organ.gain;
 
-[16,16,20,20,20,5,16] @=>int keys[];
+[20,32,32,32,20,20] @=>int keys[];
 0 => int keyIndex;
-16 => int key; //E or something cool like that I think
+keys[0] => int key; //E or something cool like that I think
 
 .6=> float eT;
 //.3=> float e2T;
@@ -80,16 +80,19 @@ while( true )
             if(msg.which < 30){
                 //we are alpha character
                 Std.mtof(alpha[msg.which-4]+key) => freq;
-            }else if(msg.which==44){
-                //this one should be the space key!
-                Std.mtof(key) => freq;
             }else if(msg.which==40){
                 //Enter key I think?
                 keyIndex++;
-                keys[keyIndex%5]=>key;
+                keys[keyIndex%keys.cap()]=>key;
             }else if(msg.which == 229){
                 //shift
                 1 => eT;
+            }else if(msg.which == 231){
+                //comand
+                1 => eT;
+            }else if(msg.which == 230){
+                //option
+                .5 => eT;
             }else if(msg.which == 55){
                 // period
                 spork ~ punctuate(key,0);
